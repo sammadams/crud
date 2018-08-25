@@ -26,6 +26,7 @@ if ( isset($_POST['email']) && isset($_POST['pass']) ) {
         }
         elseif ( $check == $stored_hash ) {
             error_log("Login success ".$_POST['email']);
+            $_SESSION['email'] = $_POST['email'];
             header("Location: index.php");
             return;
         };

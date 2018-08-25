@@ -6,15 +6,13 @@ if ( !isset($_SESSION['email']) ) {
     die("ACCESS DENIED");
 };
 
-// check for all fields
-if ( empty($_POST['make']) || empty($_POST['model']) || empty($_POST['year']) || empty($_POST['mileage']) ){
-    $_SESSION['error'] = 'All fields are required';
-    header("Location: add.php");
-    return;
-};
-
 // data validation on entries
-if ( isset($_POST['make']) && isset($_POST['model']) && isset($_POST['year']) && isset($_POST['mileage']) {
+if ( isset($_POST['make']) && isset($_POST['model']) && isset($_POST['year']) && isset($_POST['mileage']) ) {
+    if ( empty($_POST['make']) || empty($_POST['model']) || empty($_POST['year']) || empty($_POST['mileage']) ){
+        $_SESSION['error'] = 'All fields are required';
+        header("Location: add.php");
+        return;
+    };
     // numeric year
     if ( !is_numeric($_POST['year']) ) {
         $_SESSION['error'] = 'Year must be numeric';
